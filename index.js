@@ -1,8 +1,8 @@
 $(function () {
-    loadRecipe();
-    $("#recipes").on("click", ".btn-danger", delRecipe);
-    $("#recipes").on("click", ".btn-warning", updateRecipe);
-    $("#addBtn").on("click", addRecipe);
+    loadProduct();
+    $("#recipes").on("click", ".btn-danger", delProduct);
+    $("#recipes").on("click", ".btn-warning", updateProduct);
+    $("#addBtn").on("click", addProduct);
     $("#updateSave").on("click",function () {
         var id = $("#updateId").val();
         var name = $("#updateTitle").val();
@@ -15,12 +15,12 @@ $(function () {
         data: { name, price, color,department, description },
         method: "PUT",
         success: function (response) {
-          loadRecipe();
+            loadProduct();
           $("#updateModal").modal("hide");
         },
       });
     });
-    function updateRecipe() {
+    function updateProduct() {
     var btn = $(this);
     var parentDiv = btn.closest(".recipe");
     let id = parentDiv.attr("data-id");
@@ -37,7 +37,7 @@ $(function () {
       }
     );
   }
-  function addRecipe() {
+  function addProduct() {
     var name = $("#title").val();
     console.log(title);
     var color = $("#color").val();
@@ -54,12 +54,12 @@ $(function () {
         $("#price").val("");
         $("#dept").val("");
         $("#desc").val("");
-        loadRecipe();
+        loadProduct();
         $("#addModal").modal("hide");
       },
     });
   }
-  function delRecipe() {
+  function delProduct() {
     var btn = $(this);
     var parentDiv = btn.closest(".recipe");
     let id = parentDiv.attr("data-id");
@@ -67,11 +67,11 @@ $(function () {
       url: "https://usman-fake-api.herokuapp.com/api/products/" + id,
       method: "DELETE",
       success: function () {
-        loadRecipe();
+        loadProduct();
       },
     });
   }
-  function loadRecipe() {
+  function loadProduct() {
     $.ajax({
       url: "https://usman-fake-api.herokuapp.com/api/products",
       method: "GET",
