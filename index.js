@@ -39,7 +39,6 @@ $(function () {
   }
   function addProduct() {
     var name = $("#title").val();
-    console.log(title);
     var color = $("#color").val();
     var price = $("#price").val();
     var department = $("#dept").val();
@@ -80,7 +79,6 @@ $(function () {
         recipes.html("An Error has occured");
       },
       success: function (response) {
-        console.log(response);
         var recipes = $("#recipes");
         recipes.empty();
         for (var i = 0; i < response.length; i++) {
