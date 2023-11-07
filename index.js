@@ -4,12 +4,15 @@ $(function () {
     $("#recipes").on("click", ".btn-warning", updateRecipe);
     $("#addBtn").on("click", addRecipe);
     $("#updateSave").on("click",function () {
-      var id = $("#updateId").val();
-      var title = $("#updateTitle").val();
-      var body = $("#updateBody").val();
+        var id = $("#updateId").val();
+        var name = $("#updateTitle").val();
+        var price = $("#updatePrice").val();
+        var color = $("#updateColor").val();
+        var department = $("#updateDept").val();
+        var description = $("#updateDesc").val();
       $.ajax({
-        url: "https://usman-fake-api.herokuapp.com/api/recipes/" + id,
-        data: { title, body },
+        url: "https://usman-fake-api.herokuapp.com/api/products/" + id,
+        data: { name, price, color,department, description },
         method: "PUT",
         success: function (response) {
           loadRecipe();
@@ -22,11 +25,14 @@ $(function () {
     var parentDiv = btn.closest(".recipe");
     let id = parentDiv.attr("data-id");
     $.get(
-      "https://usman-fake-api.herokuapp.com/api/recipes/" + id,
+      "https://usman-fake-api.herokuapp.com/api/products/" + id,
       function (response) {
         $("#updateId").val(response._id);
-        $("#updateTitle").val(response.title);
-        $("#updateBody").val(response.body);
+        $("#updateTitle").val(response.name);
+        $("#updatePrice").val(response.price);
+        $("#updateColor").val(response.color);
+        $("#updateDept").val(response.department);
+        $("#updateDesc").val(response.description);
         $("#updateModal").modal("show");
       }
     );
